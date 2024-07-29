@@ -1,0 +1,66 @@
+.table_header {
+    text-align: center;
+}
+.table_section {
+    height: auto;
+    overflow: auto;
+}
+table {
+    width: 100%;
+    table-layout: fixed;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+thead th{
+    position: sticky;
+    top:0;
+    background-color: rgba(86, 89, 114, 0.45);
+    font-size: 18px;
+    text-align: center;
+}
+th, td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 20px;
+    word-break: break-word;
+    text-align: center;
+    font-size: 16px;
+}
+.button-update {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button-update:hover {
+    background-color: #0056b3;
+}
+.button-delete {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff0026;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button-delete:hover {
+    background-color: #b30021;
+}
+.btnAdd {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #33b300 ;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btnAdd:hover {
+    background-color: #068a10;
+}

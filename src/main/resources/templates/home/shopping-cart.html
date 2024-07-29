@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security6" lang="en" >
+<head th:replace="~{home/fragments/head :: head}">
+    <div th:replace="~{home/fragments/header :: header}">
+
+    </div>
+<body>
+<div class="container">
+    <br>
+    <h3>Giỏ hàng</h3>
+    <span th:if="${count} ">
+        <div class="rows">
+        <div class="col-sm-9" >
+            <table class="table table-bordered">
+                <thead>
+                <tr style="text-align: center">
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá </th>
+                    <th>Số lượng </th>
+                    <th>Tổng</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody >
+                    <form  th:action="@{/shopping-cart/update}"  method="post" th:each="item :${cartItems}">
+                        <input type="hidden" name="id" th:value="${item.productId}" />
+                        <tr style="text-align: center" >
+                            <td th:text="${item.productId}"></td>
+                            <td th:text="${item.name}"> </td>
+                            <!--<td th:text="${item.price}"></td>-->
+                            <td>
+                                <span th:inline="text"> [[${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')}]] ₫</span>
+                            </td>
+                            <td><input name="quantity" th:value="${item.quantity}"
+                                       onblur="this.form.submit()" style="width: 50px; text-align: center"></td>
+                            <td th:text="${#numbers.formatDecimal(item.quantity * item.price, 0, 'COMMA', 0, 'POINT')+'₫'}"></td>
+                            <!--<td th:text="${item.quantity*item.price}"></td>-->
+                            <td><a class="btn btn-primary btn-danger" th:href="@{'/shopping-cart/delete/'+${item.productId}}">Remove</a></td>
+                        </tr>
+                    </form>
+                </tbody>
+            </table>
+            <p th:text="'Tổng tiền: ' + ${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT') + '₫'}"></p>
+            <hr />
+            <a class="btn btn-primary btn-danger" th:href="@{'/shopping-cart/clear'}">Clear Cart</a>
+            <a class="btn btn-primary btn-sm" th:href="@{'/categories'}">Add more</a>
+            <a class="btn btn-primary btn-success" th:href="@{'/shopping-cart/checkout'}"> Check out </a>
+
+        </div>
+    </div>
+    </span>
+    <span th:unless="${count}">
+        <p>Chưa có sản phẩm nào trong giỏ hàng</p>
+        <br>
+    </span>
+</div>
+<br>
+<div th:replace="~{home/fragments/footer :: footer}"></div>
+<!-- Start Script -->
+<div th:replace="~{home/fragments/script :: script}"></div>
+<!-- End Script -->
+</body>
+
+</html>

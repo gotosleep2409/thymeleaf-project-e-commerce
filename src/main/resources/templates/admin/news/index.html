@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security6" lang="en" >
+<link th:href="@{/index.css}" rel="stylesheet"/>
+<head th:replace="~{admin/fragments/head :: head}">
+
+    <title> Admin </title></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <div th:replace="~{admin/fragments/header :: header}"></div>
+
+    <!-- Left side column. contains the sidebar -->
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Trang quản lý
+                <small>Aobongda.net</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li> <a> News </a> </li>
+            </ol>
+        </section>
+
+        <textarea name="content" id="editor"> </textarea>
+
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<div th:replace="~{admin/fragments/script :: script}"></div>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+</body>
+</html>

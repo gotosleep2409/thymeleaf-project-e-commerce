@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security6" lang="en" >
+<head th:replace="~{admin/fragments/head :: head}">
+
+    <title> Admin </title></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <div th:replace="~{admin/fragments/header :: header}"></div>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Trang quản lý
+                <small>Aobongda.net</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <!--<li><a href="#">Examples</a></li>
+                <li class="active">Blank page</li>-->
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <h2>Add User</h2>
+            <form style="font-size: 20px"  th:object="${user}" th:action="@{addUser}" method="post">
+                <label for="name">Name:</label>
+                <input style="margin-left: 73px"  type="text" id="name" name="name" th:field="*{name}">
+                <br>
+                <label for="username">Username:</label>
+                <input style="margin-left: 40px" type="text" id="username" name="username" th:field="*{username}">
+                <br>
+                <label for="username">Email:</label>
+                <input style="margin-left: 40px" type="text" id="email" name="email" th:field="*{email}">
+                <br>
+                <label for="password">Password:</label>
+                <input style="margin-left: 44px"  type="password" id="password" name="password" th:field="*{password}">
+                <br>
+                <button type="submit" class="btn btn-success">Add</button>
+            </form>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<div th:replace="~{admin/fragments/script :: script}"></div>
+
+</body>
+</html>

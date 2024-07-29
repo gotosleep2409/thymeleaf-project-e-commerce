@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security6" lang="en" >
+<head th:replace="~{home/fragments/head :: head}">
+    <div th:replace="~{home/fragments/header :: header}">
+
+    </div>
+<body>
+<div th:if="${status == '00'}">
+    <div class="container py-5">
+        <div class="row py-5">
+            <h3> Thanh toán đơn hàng thành công </h3>
+        </div>
+    </div>
+</div>
+<div th:unless="${status =='00'}" >
+    <div class="container py-5">
+        <div class="row py-5">
+            <h3> Thanh toán đơn hàng thất bại </h3>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<div th:replace="~{home/fragments/footer :: footer}"></div>
+<!-- Start Script -->
+<div th:replace="~{home/fragments/script :: script}"></div>
+<!-- End Script -->
+</body>
+
+</html>

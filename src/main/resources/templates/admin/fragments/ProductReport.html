@@ -1,0 +1,103 @@
+<div th:fragment="productReport">
+  <script th:inline="javascript">
+    $(function(){
+      Highcharts.chart('container', {
+        chart: {
+          type: 'column'
+        },
+        title: {
+          text: 'Số lượng mua hàng của các sản phẩm'
+        },
+        subtitle: {
+          text: /*'All Details'*/ ''
+        },
+        xAxis: {
+          categories: [[${data3.keySet()}]],
+          crosshair: true
+        },
+        yAxis: {
+          min: 0,
+          max:100,
+          title: {
+            text: 'Số lượng đơn hàng mua'
+          }
+        },
+        tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                  '<td style="padding:0"><b>{point.y} </b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+          }
+        },
+        series: [{
+          name: 'Số lượng đơn hàng',
+          data: [[${data3.values()}]]
+        }]
+      });
+    });
+  </script>
+
+
+  <script>
+    const ctx = document.getElementById('myChart');
+    /*console.log(Object.keys(transactions2))
+    console.log(Object.values(transactions2))*/
+    /*var transaction_x = transactions.map(x => x["name"])
+    var transaction_y = transactions.map(x => x["quantity"])*/
+    console.log(totalAmountByMonth)
+    var transaction_x = Object.keys(transactions2);
+    var transaction_y = Object.values(transactions2);
+
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: transaction_x,
+        datasets: [{
+          label: 'Số lượng đơn hàng',
+          data: transaction_y,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
+
+  <script>
+    const ctx2 = document.getElementById('myChart2');
+    var transaction_x = Object.keys(totalAmountByMonth);
+    var transaction_y = Object.values(totalAmountByMonth);
+
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: transaction_x,
+        datasets: [{
+          label: 'Tổng thu nhập',
+          data: transaction_y,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</div>
